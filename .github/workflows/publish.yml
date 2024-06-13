@@ -1,0 +1,44 @@
+name: publish
+
+on:
+  push:
+    tags:
+      - "*.*.*"
+
+jobs:
+  build_and_publish_pypi:
+    if: github.repository_owner == 'statnett'
+    permissions:
+      id-token: write
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Install Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.12
+      - name: install poetry
+        run: |
+          python -m pip install --upgrade pip wheel pipx
+          python -m pipx install poetry
+      - name: Install dependencies
+        run: |
+          poetry install
+          poetry self add "poetry-dynamic-versioning[plugin]"
+      - name: Run tests and linting
+        run: |
+          poetry run pytest
+          poetry run ruff check
+          poetry run ruff format
+      - name: Build package
+        run: |
+          poetry build
+      - name: Publish package distributions to TestPyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          repository-url: https://test.pypi.org/legacy/
+      - name: Publish package distributions to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
