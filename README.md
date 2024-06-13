@@ -11,9 +11,7 @@ and its fields.
 
 ```python
 from datetime import UTC, datetime
-
 from pydantic import BaseModel
-
 from grammarie import Decimal1, IntTimestampMS, LowercaseStr, UppercaseStr
 
 
@@ -68,7 +66,6 @@ This package is available on PyPI and can be installed with pip, uv, pdm, poetry
 ## Development
 
 This project uses [Poetry](https://python-poetry.org/) to manage the environment and Python dependencies.
-
 To install the development environment and run the test suite:
 ```bash
 poetry install
