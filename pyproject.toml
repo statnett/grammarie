@@ -4,6 +4,15 @@ version = "0.0.0"
 description = "Custom Pydantic types and validators"
 authors = ["Statnett Datascience <Datascience.Drift@Statnett.no>"]
 repository = "https://gitlab.statnett.no//grammarie.git"
+keywords = ["pydantic", "types", "validation", "coercion", "annotated"]
+classifiers = [
+    "Programming Language :: Python :: Implementation :: CPython",
+    "Programming Language :: Python :: 3",
+    "Intended Audience :: Developers",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "License :: OSI Approved :: MIT License",
+]
+readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.10"
